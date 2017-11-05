@@ -1,4 +1,4 @@
-package ru.stqa.noy.addressbook;
+package ru.stqa.noy.addressbook.model;
 
 public class AddNewData {
   private final String firstname;
