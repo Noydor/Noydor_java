@@ -47,4 +47,8 @@ public class ApplicationManager {
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
+
+  public void closeAlert() {
+    wd.switchTo().alert().accept();
+  }
 }
