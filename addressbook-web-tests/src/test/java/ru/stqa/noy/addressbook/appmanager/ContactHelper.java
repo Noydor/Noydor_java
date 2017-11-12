@@ -2,11 +2,11 @@ package ru.stqa.noy.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.noy.addressbook.model.AddNewData;
 
 public class ContactHelper extends HelperBase {
-  private FirefoxDriver wd;
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -16,7 +16,7 @@ public class ContactHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-  public void fillAddNewForm(AddNewData addNewData) {
+  public void fillAddNewForm(AddNewData addNewData, boolean creation) {
     type(By.name("firstname"), addNewData.getFirstname());
     type(By.name("lastname"), addNewData.getLastname());
     type(By.name("nickname"), addNewData.getNickname());
@@ -27,7 +27,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("mobile"), addNewData.getMobile());
     type(By.name("email"), addNewData.getEmail());
     type(By.name("homepage"), addNewData.getHomepage());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addNewData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+  }
 
   public void initContactModification() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));

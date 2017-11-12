@@ -11,8 +11,9 @@ public class AddNewData {
   private final String mobile;
   private final String email;
   private final String homepage;
+  private String group;
 
-  public AddNewData(String firstname, String lastname, String nickname, String title, String company, String address, String home, String mobile, String email, String homepage) {
+  public AddNewData(String firstname, String lastname, String nickname, String title, String company, String address, String home, String mobile, String email, String homepage, String group) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.nickname = nickname;
@@ -23,6 +24,7 @@ public class AddNewData {
     this.mobile = mobile;
     this.email = email;
     this.homepage = homepage;
+    this.group = group;
   }
 
   public String getFirstname() {
@@ -63,5 +65,9 @@ public class AddNewData {
 
   public String getHomepage() {
     return homepage;
+  }
+
+  public String getGroup() {
+    return group;
   }
 }
