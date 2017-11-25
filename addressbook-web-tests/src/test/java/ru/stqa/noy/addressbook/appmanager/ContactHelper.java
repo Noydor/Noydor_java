@@ -2,9 +2,13 @@ package ru.stqa.noy.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.noy.addressbook.model.AddNewData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -35,9 +39,8 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void initContactModification() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
-
+  public void initContactModification(int index) {
+    wd.findElements(By.cssSelector("a[href^='edit.php?id=']")).get(index).click();
   }
 
   public void submitContactModification() {
@@ -73,5 +76,17 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<AddNewData> getContactList() {
+    List<AddNewData> contacts = new ArrayList<AddNewData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      String lastname = element.getText();
+      AddNewData contact = new AddNewData(firstname, lastname, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
