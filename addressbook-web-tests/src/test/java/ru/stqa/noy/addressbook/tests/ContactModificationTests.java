@@ -6,26 +6,25 @@ import org.testng.annotations.Test;
 import ru.stqa.noy.addressbook.model.AddNewData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactModificationTests extends TestBase{
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getNavigationHelper().gotoHomePage();
-    if (! app.getContactHelper().isThereAContact()) {
-      app.getContactHelper().createContact(new AddNewData("Samuel", "Smith", "Smithy", "Mr", "Seastar", "Berlin, Niederkirchnerstrasse, 18", "4955123456", "4976543210", "samuelsmith@gmail.com", "samuelsmith.com", "test1"), true);
+    app.goTo().homePage();
+    if (app.contact().list().size() == 0) {
+      app.contact().create(new AddNewData("Samuel", "Smith", "Smithy", "Mr", "Seastar", "Berlin, Niederkirchnerstrasse, 18", "4955123456", "4976543210", "samuelsmith@gmail.com", "samuelsmith.com", "test1"), true);
     }
   }
 
   @Test
   public void testContactModification() {
-    List<AddNewData> before = app.getContactHelper().getContactList();
+    List<AddNewData> before = app.contact().list();
     int index = before.size() - 1;
     AddNewData contact = new AddNewData(before.get(index).getId(),"Samuel", "Smith", "Smithy", "Mr", "Seastar", "Berlin, Niederkirchnerstrasse, 18", "4955123456", "4976543210", "samuelsmith@gmail.com", "samuelsmith.com", null);
-    app.getContactHelper().modifyContact(index, contact);
-    List<AddNewData> after = app.getContactHelper().getContactList();
+    app.contact().modify(index, contact);
+    List<AddNewData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);
