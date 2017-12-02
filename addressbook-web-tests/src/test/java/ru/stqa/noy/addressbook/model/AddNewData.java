@@ -1,55 +1,81 @@
 package ru.stqa.noy.addressbook.model;
 
 public class AddNewData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String home;
-  private final String mobile;
-  private final String email;
-  private final String homepage;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String nickname;
+  private String title;
+  private String company;
+  private String address;
+  private String home;
+  private String mobile;
+  private String email;
+  private String homepage;
   private String group;
-
-  public AddNewData(String firstname, String lastname, String nickname, String title, String company, String address, String home, String mobile, String email, String homepage, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.email = email;
-    this.homepage = homepage;
-    this.group = group;
-  }
-
-  public AddNewData(int id, String firstname, String lastname, String nickname, String title, String company, String address, String home, String mobile, String email, String homepage, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.email = email;
-    this.homepage = homepage;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public AddNewData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public AddNewData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public AddNewData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public AddNewData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public AddNewData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public AddNewData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public AddNewData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public AddNewData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public AddNewData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public AddNewData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public AddNewData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
+
+  public AddNewData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public String getFirstname() {

@@ -14,7 +14,7 @@ public class ContactModificationTests extends TestBase{
   public void ensurePreconditions() {
     app.goTo().homePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new AddNewData("Samuel", "Smith", "Smithy", "Mr", "Seastar", "Berlin, Niederkirchnerstrasse, 18", "4955123456", "4976543210", "samuelsmith@gmail.com", "samuelsmith.com", "test1"), true);
+      app.contact().create(new AddNewData().withFirstname("Samuel").withLastname("Smith").withNickname("Smithy").withTitle("Mr").withCompany("Seastar").withAddress("Berlin, Niederkirchnerstrasse, 18").withHome("4955123456").withMobile("4976543210").withEmail("samuelsmith@gmail.com").withHomepage("samuelsmith.com").withGroup("test1"), true);
     }
   }
 
@@ -22,7 +22,7 @@ public class ContactModificationTests extends TestBase{
   public void testContactModification() {
     List<AddNewData> before = app.contact().list();
     int index = before.size() - 1;
-    AddNewData contact = new AddNewData(before.get(index).getId(),"Samuel", "Smith", "Smithy", "Mr", "Seastar", "Berlin, Niederkirchnerstrasse, 18", "4955123456", "4976543210", "samuelsmith@gmail.com", "samuelsmith.com", null);
+    AddNewData contact = new AddNewData().withId(before.get(index).getId()).withFirstname("Samuel").withLastname("Smith").withNickname("Smithy").withTitle("Mr").withCompany("Seastar").withAddress("Berlin, Niederkirchnerstrasse, 18").withHome("4955123456").withMobile("4976543210").withEmail("samuelsmith@gmail.com").withHomepage("samuelsmith.com");
     app.contact().modify(index, contact);
     List<AddNewData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
