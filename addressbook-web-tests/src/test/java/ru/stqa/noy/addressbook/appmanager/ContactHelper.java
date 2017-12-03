@@ -7,8 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.noy.addressbook.model.AddNewData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -39,16 +40,17 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  public void initContactModification(int index) {
-    wd.findElements(By.cssSelector("a[href^='edit.php?id=']")).get(index).click();
+  private void initContactModification() {
+    wd.findElement(By.cssSelector("a[href^='edit.php?id=']")).click();
   }
 
   public void submitContactModification() {
     click(By.name("update"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteSelectedContact() {
@@ -62,15 +64,16 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void modify(int index, AddNewData contact) {
-    initContactModification(index);
+  public void modify(AddNewData contact) {
+    selectContactById(contact.getId());
+    initContactModification();
     fillAddNewForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(AddNewData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     closeAlert();
     returnToHomePage();
@@ -88,16 +91,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public boolean isThereAContact() {
-    return isElementPresent(By.name("selected[]"));
-  }
-
-  public int getContactCount() {
-    return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<AddNewData> list() {
-    List<AddNewData> contacts = new ArrayList<AddNewData>();
+  public Set<AddNewData> all() {
+    Set<AddNewData> contacts = new HashSet<AddNewData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
@@ -108,4 +103,5 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
 }
