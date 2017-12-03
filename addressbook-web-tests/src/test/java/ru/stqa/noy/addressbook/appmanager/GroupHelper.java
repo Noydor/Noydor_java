@@ -54,6 +54,7 @@ public class GroupHelper extends HelperBase {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -62,12 +63,14 @@ public class GroupHelper extends HelperBase {
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
+    groupCache = null;
     returnToGroupPage();
   }
 
   public void delete(GroupData group) {
     selectGroupById(group.getId());    //выбор группы по id
     deleteSelectedGroups();
+    groupCache = null;
     returnToGroupPage();
   }
 
@@ -79,15 +82,20 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Groups groupCache = null;   //Реализация кеша
+
   public Groups all() {               //Set - тип возвращаемого значения
-    Groups groups = new Groups();     //Создаётся множество элементов
+    if (groupCache != null) {         //Если кеш не пустой,
+      return new Groups(groupCache);  //возврат копии
+    }
+    groupCache = new Groups();     //Создаётся множество элементов
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements) {     //Проходим по всем элементам по указанному локатору
       String name = element.getText();        //Для каждого элемента достаём имя и id группы
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name)); //Создаём новый объект с именем и id и помещаем в множество
+      groupCache.add(new GroupData().withId(id).withName(name)); //Создаём новый объект с именем и id и помещаем в множество
     }
-    return groups;
+    return new Groups(groupCache);
   }
 
 }
