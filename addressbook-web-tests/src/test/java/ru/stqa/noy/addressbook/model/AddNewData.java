@@ -10,6 +10,7 @@ public class AddNewData {
   private String address;
   private String home;
   private String mobile;
+  private String work;
   private String email;
   private String homepage;
   private String group;
@@ -60,6 +61,11 @@ public class AddNewData {
 
   public AddNewData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
+  }
+
+  public AddNewData withWork(String work) {
+    this.mobile = work;
     return this;
   }
 
