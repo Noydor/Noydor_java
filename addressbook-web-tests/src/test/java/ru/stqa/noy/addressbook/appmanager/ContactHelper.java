@@ -42,18 +42,26 @@ public class ContactHelper extends HelperBase {
     }
   }
 
-  private void initContactModification() {
-    wd.findElement(By.cssSelector("a[href^='edit.php?id=']")).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
+  //private void initContactModification() {
+    //wd.findElement(By.cssSelector("a[href^='edit.php?id=']")).click();
+  //}
+
+  //private void initContactModificationById(int id) {
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+  //}
+
+  private void initContactModificationById(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=" + id + "']"))).click();
   }
 
   public void submitContactModification() {
     click(By.name("update"));
   }
 
-
-  public void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-  }
 
   public void deleteSelectedContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -68,8 +76,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(AddNewData contact) {
-    selectContactById(contact.getId());
-    initContactModification();
+    initContactModificationById(contact.getId());
     fillAddNewForm(contact, false);
     submitContactModification();
     contactCache = null;
@@ -108,8 +115,9 @@ public class ContactHelper extends HelperBase {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
+      String[] phones = cells.get(5).getText().split("\n");   //Строка разрезается на части, задаётся шаблон поиска (рег. выражение); \n - перевод строки
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new AddNewData().withId(id).withFirstname(firstname).withLastname(lastname));
+      contactCache.add(new AddNewData().withId(id).withFirstname(firstname).withLastname(lastname).withHome(phones[0]).withMobile(phones[1]));
     }
     return new Contacts(contactCache);
   }
@@ -129,7 +137,4 @@ public class ContactHelper extends HelperBase {
     return new AddNewData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withHome(home).withMobile(mobile).withWork(work);
   }
 
-  private void initContactModificationById(int id) {
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-  }
 }

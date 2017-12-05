@@ -65,7 +65,7 @@ public class AddNewData {
   }
 
   public AddNewData withWork(String work) {
-    this.mobile = work;
+    this.work = work;
     return this;
   }
 
@@ -114,6 +114,10 @@ public class AddNewData {
 
   public String getMobile() {
     return mobile;
+  }
+
+  public String getWork() {
+    return work;
   }
 
   public String getEmail() {
