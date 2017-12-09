@@ -14,6 +14,16 @@ public class AddNewData {
   private String email;
   private String homepage;
   private String group;
+  private String allPhones;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public AddNewData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
   public int getId() {
     return id;
@@ -160,4 +170,5 @@ public class AddNewData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
+
 }

@@ -32,6 +32,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), addNewData.getAddress());
     type(By.name("home"), addNewData.getHome());
     type(By.name("mobile"), addNewData.getMobile());
+    type(By.name("work"), addNewData.getWork());
     type(By.name("email"), addNewData.getEmail());
     type(By.name("homepage"), addNewData.getHomepage());
 
@@ -50,13 +51,13 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector("a[href^='edit.php?id=']")).click();
   //}
 
-  //private void initContactModificationById(int id) {
-    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-  //}
-
   private void initContactModificationById(int id) {
-    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=" + id + "']"))).click();
+    wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
+
+  //private void initContactModificationById(int id) {
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=" + id + "']"))).click();
+  //}
 
   public void submitContactModification() {
     click(By.name("update"));
@@ -106,20 +107,20 @@ public class ContactHelper extends HelperBase {
   private Contacts contactCache = null;
 
   public Contacts all() {
-    if (contactCache != null) {
-      return new Contacts(contactCache);
-    }
-    contactCache = new Contacts();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
+    //if (contactCache != null) {
+      //return new Contacts(contactCache);
+    //}
+    Contacts contacts = new Contacts();
+    List<WebElement> elements  = wd.findElements(By.name("entry"));
+    for (WebElement element : elements ) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String firstname = cells.get(2).getText();
       String lastname = cells.get(1).getText();
-      String[] phones = cells.get(5).getText().split("\n");   //Строка разрезается на части, задаётся шаблон поиска (рег. выражение); \n - перевод строки
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new AddNewData().withId(id).withFirstname(firstname).withLastname(lastname).withHome(phones[0]).withMobile(phones[1]));
+      String allPhones = cells.get(5).getText();
+      contacts.add(new AddNewData().withId(id).withFirstname(firstname).withLastname(lastname).withAllPhones(allPhones));
     }
-    return new Contacts(contactCache);
+    return contacts;
   }
 
   public int count() {
