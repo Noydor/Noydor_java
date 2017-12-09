@@ -12,12 +12,18 @@ public class AddNewData {
   private String mobile;
   private String work;
   private String email;
+  private String email2;
+  private String allEmails;
   private String homepage;
   private String group;
   private String allPhones;
 
   public String getAllPhones() {
     return allPhones;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
   }
 
   public AddNewData withAllPhones(String allPhones) {
@@ -84,6 +90,16 @@ public class AddNewData {
     return this;
   }
 
+  public AddNewData withEmail2 (String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public AddNewData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
   public AddNewData withHomepage(String homepage) {
     this.homepage = homepage;
     return this;
@@ -132,6 +148,10 @@ public class AddNewData {
 
   public String getEmail() {
     return email;
+  }
+
+  public String getEmail2() {
+    return email2;
   }
 
   public String getHomepage() {
