@@ -1,5 +1,7 @@
 package ru.stqa.noy.addressbook.model;
 
+import java.io.File;
+
 public class AddNewData {
   private int id = Integer.MAX_VALUE;
   private String firstname;
@@ -17,6 +19,17 @@ public class AddNewData {
   private String homepage;
   private String group;
   private String allPhones;
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public AddNewData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
+  private File photo;
 
   public String getAllPhones() {
     return allPhones;
