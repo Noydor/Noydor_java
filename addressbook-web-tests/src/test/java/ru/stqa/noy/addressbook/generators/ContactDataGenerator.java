@@ -53,18 +53,18 @@ public class ContactDataGenerator {
     XStream xstream = new XStream();
     xstream.processAnnotations(AddNewData.class);
     String xml = xstream.toXML(contacts);
-    Writer writer = new FileWriter(file);
-    writer.write(xml);
-    writer.close();
+    try (Writer writer = new FileWriter(file)) {
+      writer.write(xml);
+    }
   }
 
   private void saveAsCsv(List<AddNewData> contacts, File file) throws IOException {
     System.out.println(new File(".").getAbsolutePath());
-    Writer writer = new FileWriter(file);
-    for (AddNewData contact : contacts) {
-      writer.write(String.format("%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getAddress()));
+    try (Writer writer = new FileWriter(file)) {
+      for (AddNewData contact : contacts) {
+        writer.write(String.format("%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getAddress()));
+      }
     }
-    writer.close();
   }
 
   private List<AddNewData> generateContacts(int count) {
