@@ -1,17 +1,28 @@
 package ru.stqa.noy.addressbook.tests;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.noy.addressbook.model.AddNewData;
 import ru.stqa.noy.addressbook.model.Contacts;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NewContactTests extends TestBase{
 
-  @Test
+  @DataProvider
+  public Iterator<Object[]> validContacts() {
+    List<Object[]> List = new ArrayList<Object[]>();
+
+    return List.iterator();
+  }
+
+  @Test(dataProvider = "validContacts")
   public void testNewContact() {
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/noydor.jpg");
