@@ -1,20 +1,122 @@
-firstname 0;lastname 0;address 0
-firstname 1;lastname 1;address 1
-firstname 2;lastname 2;address 2
-firstname 3;lastname 3;address 3
-firstname 4;lastname 4;address 4
-firstname 5;lastname 5;address 5
-firstname 6;lastname 6;address 6
-firstname 7;lastname 7;address 7
-firstname 8;lastname 8;address 8
-firstname 9;lastname 9;address 9
-firstname 10;lastname 10;address 10
-firstname 11;lastname 11;address 11
-firstname 12;lastname 12;address 12
-firstname 13;lastname 13;address 13
-firstname 14;lastname 14;address 14
-firstname 15;lastname 15;address 15
-firstname 16;lastname 16;address 16
-firstname 17;lastname 17;address 17
-firstname 18;lastname 18;address 18
-firstname 19;lastname 19;address 19
+<list>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 0</firstname>
+    <lastname>lastname 0</lastname>
+    <address>address 0</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 1</firstname>
+    <lastname>lastname 1</lastname>
+    <address>address 1</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 2</firstname>
+    <lastname>lastname 2</lastname>
+    <address>address 2</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 3</firstname>
+    <lastname>lastname 3</lastname>
+    <address>address 3</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 4</firstname>
+    <lastname>lastname 4</lastname>
+    <address>address 4</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 5</firstname>
+    <lastname>lastname 5</lastname>
+    <address>address 5</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 6</firstname>
+    <lastname>lastname 6</lastname>
+    <address>address 6</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 7</firstname>
+    <lastname>lastname 7</lastname>
+    <address>address 7</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 8</firstname>
+    <lastname>lastname 8</lastname>
+    <address>address 8</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 9</firstname>
+    <lastname>lastname 9</lastname>
+    <address>address 9</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 10</firstname>
+    <lastname>lastname 10</lastname>
+    <address>address 10</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 11</firstname>
+    <lastname>lastname 11</lastname>
+    <address>address 11</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 12</firstname>
+    <lastname>lastname 12</lastname>
+    <address>address 12</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 13</firstname>
+    <lastname>lastname 13</lastname>
+    <address>address 13</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 14</firstname>
+    <lastname>lastname 14</lastname>
+    <address>address 14</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 15</firstname>
+    <lastname>lastname 15</lastname>
+    <address>address 15</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 16</firstname>
+    <lastname>lastname 16</lastname>
+    <address>address 16</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 17</firstname>
+    <lastname>lastname 17</lastname>
+    <address>address 17</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 18</firstname>
+    <lastname>lastname 18</lastname>
+    <address>address 18</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+  <ru.stqa.noy.addressbook.model.AddNewData>
+    <id>2147483647</id>
+    <firstname>firstname 19</firstname>
+    <lastname>lastname 19</lastname>
+    <address>address 19</address>
+  </ru.stqa.noy.addressbook.model.AddNewData>
+</list>

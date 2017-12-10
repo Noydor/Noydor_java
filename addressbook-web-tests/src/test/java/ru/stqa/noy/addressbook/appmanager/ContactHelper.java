@@ -38,11 +38,11 @@ public class ContactHelper extends HelperBase {
     type(By.name("homepage"), addNewData.getHomepage());
     attach(By.name("photo"), addNewData.getPhoto());
 
-    if (creation) {
+    /*if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addNewData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+    }*/
   }
 
   public void selectContactById(int id) {

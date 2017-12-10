@@ -1,30 +1,39 @@
 package ru.stqa.noy.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.noy.addressbook.model.GroupData;
 import ru.stqa.noy.addressbook.model.Groups;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-  @DataProvider                                                //Провайдер тестовых данных
-  public Iterator<Object[]> validGroups() {                    //Итератор массива объектов
-    List<Object[]> List = new ArrayList<Object[]>();
-    List.add(new Object[] {new GroupData().withName("test1").withHeader("header 1").withFooter("footer 1")});  //1-й набор тестовых данных
-    List.add(new Object[] {new GroupData().withName("test2").withHeader("header 2").withFooter("footer 2")});
-    List.add(new Object[] {new GroupData().withName("test3").withHeader("header 3").withFooter("footer 3")});
-    return List.iterator();
-  }
+  @DataProvider
+  public Iterator<Object[]> validGroups() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
+    String xml = "";
+    String line = reader.readLine();
+    while (line != null) {
+        xml += line;
+        line = reader.readLine();
+      }
+    XStream xstream = new XStream();
+    xstream.processAnnotations(GroupData.class);
+    List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+    return groups.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
 
-  @Test(dataProvider = "validGroups")                               //Привязка провайдера к тесту
-  public void testGroupCreation(GroupData group) {                  //Данные передаются извне
+    @Test(dataProvider = "validGroups")
+    public void testGroupCreation (GroupData group){
       app.goTo().groupPage();
       Groups before = app.group().all();
       app.group().create(group);
@@ -34,3 +43,4 @@ public class GroupCreationTests extends TestBase {
     }
 
   }
+

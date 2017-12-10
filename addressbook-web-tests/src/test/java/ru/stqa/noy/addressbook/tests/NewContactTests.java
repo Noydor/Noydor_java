@@ -1,14 +1,17 @@
 package ru.stqa.noy.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.noy.addressbook.model.AddNewData;
 import ru.stqa.noy.addressbook.model.Contacts;
+import ru.stqa.noy.addressbook.model.GroupData;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,20 +19,23 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class NewContactTests extends TestBase{
 
   @DataProvider
-  public Iterator<Object[]> validContacts() {
-    List<Object[]> List = new ArrayList<Object[]>();
-
-    return List.iterator();
+  public Iterator<Object[]> validContacts() throws IOException {
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
+    String xml = "";
+    String line = reader.readLine();
+    while (line != null) {
+      xml += line;
+      line = reader.readLine();
+    }
+    XStream xstream = new XStream();
+    xstream.processAnnotations(AddNewData.class);
+    List<AddNewData> contacts =(List<AddNewData>) xstream.fromXML(xml);
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
   @Test(dataProvider = "validContacts")
-  public void testNewContact() {
+  public void testNewContact(AddNewData contact) {
     Contacts before = app.contact().all();
-    File photo = new File("src/test/resources/noydor.jpg");
-    AddNewData contact = new AddNewData().withFirstname("Samuel").withLastname("Smith").withNickname("Smithy")
-            .withTitle("Mr").withCompany("Seastar").withAddress("Berlin, Niederkirchnerstrasse, 18")
-            .withHome("49-55-1234").withMobile("4976543210").withWork("123").withEmail("samuelsmith@gmail.com").withEmail2("s.smith@gmail.com")
-            .withHomepage("samuelsmith.com").withGroup("test1").withPhoto(photo);
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
