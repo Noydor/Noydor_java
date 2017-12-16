@@ -1,15 +1,15 @@
 package ru.stqa.noy.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.noy.addressbook.model.GroupData;
 import ru.stqa.noy.addressbook.model.Groups;
 
-import java.io.*;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,10 +38,10 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroups")
     public void testGroupCreation (GroupData group){
       app.goTo().groupPage();
-      Groups before = app.group().all();
+      Groups before = app.db().groups();
       app.group().create(group);
       assertThat(app.group().count(), equalTo(before.size() + 1));
-      Groups after = app.group().all();
+      Groups after = app.db().groups();
       assertThat(after, equalTo(before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));  //Вид проверки после добавления статич. импорта
     }
 
