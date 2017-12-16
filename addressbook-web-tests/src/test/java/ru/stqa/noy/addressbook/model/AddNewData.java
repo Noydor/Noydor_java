@@ -2,39 +2,82 @@ package ru.stqa.noy.addressbook.model;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+
+@Entity
+@Table(name = "addressbook")
 
 @XStreamAlias("contact")
 public class AddNewData {
+  @Id
+  @Column(name = "id")
   @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+
+  @Column(name = "firstname")
   private String firstname;
+
+  @Column(name = "lastname")
   private String lastname;
+
   private String nickname;
+
   private String title;
+
   private String company;
+
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String home;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobile;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String work;
+
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+
+  @Transient
   private String email2;
+
+  @Transient
   private String allEmails;
+
+  @Column(name = "homepage")
+  @Type(type = "text")
   private String homepage;
+
+  @Transient
   private String group;
+
+  @Transient
   private String allPhones;
 
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
+
+
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
 
   public AddNewData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
-
-  private File photo;
 
   public String getAllPhones() {
     return allPhones;
