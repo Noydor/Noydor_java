@@ -2,16 +2,16 @@
   <contact>
     <firstname>firstname 0</firstname>
     <lastname>lastname 0</lastname>
+    <nickname>nickname 0</nickname>
+    <title>title 0</title>
+    <company>company 0</company>
     <address>address 0</address>
-  </contact>
-  <contact>
-    <firstname>firstname 1</firstname>
-    <lastname>lastname 1</lastname>
-    <address>address 1</address>
-  </contact>
-  <contact>
-    <firstname>firstname 2</firstname>
-    <lastname>lastname 2</lastname>
-    <address>address 2</address>
+    <home>home 0</home>
+    <mobile>mobile 0</mobile>
+    <work>work 0</work>
+    <email>email 0</email>
+    <email2>email2 0</email2>
+    <homepage>homepage 0</homepage>
+    <group>1</group>
   </contact>
 </list>

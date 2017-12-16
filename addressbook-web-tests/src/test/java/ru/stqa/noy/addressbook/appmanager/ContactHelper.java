@@ -36,7 +36,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("email"), addNewData.getEmail());
     type(By.name("email2"), addNewData.getEmail2());
     type(By.name("homepage"), addNewData.getHomepage());
-    attach(By.name("photo"), addNewData.getPhoto());
+    //attach(By.name("photo"), addNewData.getPhoto());
 
     /*if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(addNewData.getGroup());

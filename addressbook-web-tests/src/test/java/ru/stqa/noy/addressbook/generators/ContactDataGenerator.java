@@ -5,7 +5,6 @@ import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.noy.addressbook.model.AddNewData;
-import ru.stqa.noy.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -35,7 +34,6 @@ public class ContactDataGenerator {
       return;
     }
     generator.run();
-
   }
 
   private void run() throws IOException {
@@ -62,7 +60,8 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     try (Writer writer = new FileWriter(file)) {
       for (AddNewData contact : contacts) {
-        writer.write(String.format("%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getAddress()));
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getNickname(), contact.getTitle(), contact.getCompany(), contact.getAddress()
+                , contact.getHome(), contact.getMobile(), contact.getWork(), contact.getEmail(), contact.getEmail2(), contact.getHomepage()));
       }
     }
   }
@@ -70,7 +69,10 @@ public class ContactDataGenerator {
   private List<AddNewData> generateContacts(int count) {
     List<AddNewData> contacts = new ArrayList<AddNewData>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new AddNewData().withFirstname(String.format("firstname %s", i)).withLastname(String.format("lastname %s", i)).withAddress(String.format("address %s", i)));
+      contacts.add(new AddNewData().withFirstname(String.format("firstname %s", i)).withLastname(String.format("lastname %s", i)).withNickname(String.format("nickname %s", i))
+              .withTitle(String.format("title %s", i)).withCompany(String.format("company %s", i)).withAddress(String.format("address %s", i)).withHome(String.format("home %s", i))
+              .withMobile(String.format("mobile %s", i)).withWork(String.format("work %s", i)).withEmail(String.format("email %s", i)).withEmail2(String.format("email2 %s", i))
+              .withHomepage(String.format("homepage %s", i)).withGroup("1"));
     }
     return contacts;
   }

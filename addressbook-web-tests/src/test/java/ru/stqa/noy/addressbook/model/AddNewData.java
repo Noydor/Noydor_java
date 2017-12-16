@@ -12,9 +12,30 @@ import java.io.File;
 
 @XStreamAlias("contact")
 public class AddNewData {
+  @Override
+  public String toString() {
+    return "AddNewData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", title='" + title + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", email='" + email + '\'' +
+          //  ", email2='" + email2 + '\'' +
+            ", homepage='" + homepage + '\'' +
+          //  ", group='" + group + '\'' +
+          //  ", photo='" + photo + '\'' +
+            '}';
+  }
+
+  @XStreamOmitField
   @Id
   @Column(name = "id")
-  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
 
   @Column(name = "firstname")
@@ -23,10 +44,13 @@ public class AddNewData {
   @Column(name = "lastname")
   private String lastname;
 
+  @Column(name = "nickname")
   private String nickname;
 
+  @Column(name = "title")
   private String title;
 
+  @Column(name = "company")
   private String company;
 
   @Column(name = "address")
@@ -55,53 +79,8 @@ public class AddNewData {
   @Transient
   private String allEmails;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    AddNewData that = (AddNewData) o;
-
-    if (id != that.id) return false;
-    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-    if (title != null ? !title.equals(that.title) : that.title != null) return false;
-    if (company != null ? !company.equals(that.company) : that.company != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (home != null ? !home.equals(that.home) : that.home != null) return false;
-    if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
-    if (work != null ? !work.equals(that.work) : that.work != null) return false;
-    if (email != null ? !email.equals(that.email) : that.email != null) return false;
-    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-    if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
-    if (group != null ? !group.equals(that.group) : that.group != null) return false;
-    return photo != null ? photo.equals(that.photo) : that.photo == null;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-    result = 31 * result + (title != null ? title.hashCode() : 0);
-    result = 31 * result + (company != null ? company.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (home != null ? home.hashCode() : 0);
-    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
-    result = 31 * result + (work != null ? work.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
-    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
-    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
-    result = 31 * result + (photo != null ? photo.hashCode() : 0);
-    return result;
-  }
-
   @Column(name = "homepage")
   @Type(type = "text")
-
   private String homepage;
 
   @Transient
@@ -110,14 +89,15 @@ public class AddNewData {
   @Transient
   private String allPhones;
 
+  @Transient
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
 
 
-  public File getPhoto() {
+  /*public File getPhoto() {
     return new File(photo);
-  }
+  }*/
 
   public AddNewData withPhoto(File photo) {
     this.photo = photo.getPath();
@@ -269,12 +249,46 @@ public class AddNewData {
   }
 
   @Override
-  public String toString() {
-    return "AddNewData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    AddNewData that = (AddNewData) o;
+
+    if (id != that.id) return false;
+    if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+    if (title != null ? !title.equals(that.title) : that.title != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (home != null ? !home.equals(that.home) : that.home != null) return false;
+    if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
+    if (work != null ? !work.equals(that.work) : that.work != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
+    if (group != null ? !group.equals(that.group) : that.group != null) return false;
+    return photo != null ? photo.equals(that.photo) : that.photo == null;
   }
 
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+    result = 31 * result + (title != null ? title.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (home != null ? home.hashCode() : 0);
+    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+    result = 31 * result + (work != null ? work.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
+    result = 31 * result + (group != null ? group.hashCode() : 0);
+    result = 31 * result + (photo != null ? photo.hashCode() : 0);
+    return result;
+  }
 }
