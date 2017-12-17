@@ -60,8 +60,8 @@ public class ContactDataGenerator {
     System.out.println(new File(".").getAbsolutePath());
     try (Writer writer = new FileWriter(file)) {
       for (AddNewData contact : contacts) {
-        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getNickname(), contact.getTitle(), contact.getCompany(), contact.getAddress()
-                , contact.getHome(), contact.getMobile(), contact.getWork(), contact.getEmail(), contact.getEmail2(), contact.getHomepage()));
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstname(), contact.getLastname(), contact.getNickname(), contact.getTitle(), contact.getCompany(), contact.getAddress()
+                , contact.getHome(), contact.getMobile(), contact.getWork(), contact.getEmail(), contact.getHomepage()));
       }
     }
   }
@@ -69,10 +69,10 @@ public class ContactDataGenerator {
   private List<AddNewData> generateContacts(int count) {
     List<AddNewData> contacts = new ArrayList<AddNewData>();
     for (int i = 0; i < count; i++) {
-      contacts.add(new AddNewData().withFirstname(String.format("firstname %s", i)).withLastname(String.format("lastname %s", i)).withNickname(String.format("nickname %s", i))
-              .withTitle(String.format("title %s", i)).withCompany(String.format("company %s", i)).withAddress(String.format("address %s", i)).withHome(String.format("home %s", i))
-              .withMobile(String.format("mobile %s", i)).withWork(String.format("work %s", i)).withEmail(String.format("email %s", i)).withEmail2(String.format("email2 %s", i))
-              .withHomepage(String.format("homepage %s", i)).withGroup("1"));
+      contacts.add(new AddNewData().withFirstname(String.format("Samuel %s", i)).withLastname(String.format("Smith %s", i)).withNickname(String.format("Smithy %s", i))
+              .withTitle(String.format("Mr %s", i)).withCompany(String.format("Seastar %s", i)).withAddress(String.format("Berlin, Niederkirchnerstrasse, 18 %s", i)).withHome(String.format("4955123456 %s", i))
+              .withMobile(String.format("4976543210 %s", i)).withWork(String.format("123456 %s", i)).withEmail(String.format("samuelsmith@gmail.com %s", i))
+              .withHomepage(String.format("samuelsmith.com %s", i)));
     }
     return contacts;
   }

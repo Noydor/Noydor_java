@@ -53,7 +53,7 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector("a[href^='edit.php?id=']")).click();
   //}
 
-  private void initContactModificationById(int id) {
+  public void initContactModificationById(int id) {
     wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
@@ -98,7 +98,7 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  private void gotoAddNewPage() {
+  public void gotoAddNewPage() {
     click(By.linkText("add new"));
   }
 
