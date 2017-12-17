@@ -43,6 +43,7 @@ public class NewContactTests extends TestBase{
     assertThat(after.size(), equalTo(before.size() + 1));
     app.goTo().homePage();
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+    verifyContactListInUI();
    }
 
    //@Test
