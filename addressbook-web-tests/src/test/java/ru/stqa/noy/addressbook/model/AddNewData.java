@@ -6,6 +6,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -84,15 +86,22 @@ public class AddNewData {
   private String homepage;
 
   @Transient
-  private String group;
-
-  @Transient
   private String allPhones;
 
   @Transient
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",
+          joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private static Set<GroupData> groups = new HashSet<GroupData>();
+
+  public static Groups getGroups() {
+    return new Groups(groups);
+  }
+
 
 
   /*public File getPhoto() {
@@ -191,11 +200,6 @@ public class AddNewData {
     return this;
   }
 
-  public AddNewData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
-
   public String getFirstname() {
     return firstname;
   }
@@ -244,10 +248,6 @@ public class AddNewData {
     return homepage;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -268,7 +268,7 @@ public class AddNewData {
     if (email != null ? !email.equals(that.email) : that.email != null) return false;
     if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
     if (homepage != null ? !homepage.equals(that.homepage) : that.homepage != null) return false;
-    if (group != null ? !group.equals(that.group) : that.group != null) return false;
+    //if (group != null ? !group.equals(that.group) : that.group != null) return false;
     return photo != null ? photo.equals(that.photo) : that.photo == null;
   }
 
@@ -287,8 +287,13 @@ public class AddNewData {
     result = 31 * result + (email != null ? email.hashCode() : 0);
     result = 31 * result + (email2 != null ? email2.hashCode() : 0);
     result = 31 * result + (homepage != null ? homepage.hashCode() : 0);
-    result = 31 * result + (group != null ? group.hashCode() : 0);
+    //result = 31 * result + (group != null ? group.hashCode() : 0);
     result = 31 * result + (photo != null ? photo.hashCode() : 0);
     return result;
+  }
+
+  public AddNewData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }
