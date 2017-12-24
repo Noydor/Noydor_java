@@ -41,14 +41,14 @@ public class ChangePasswordTest extends TestBase {
     assertTrue(app.newSession().login(username, new_password));
   }
 
-  private String findConfirmationLink(List<MailMessage> mailMessages, String user_email) {
-    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(user_email)).findFirst().get();
+  private String findConfirmationLink(List<MailMessage> mailMessages, String email) {
+    MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }
 
-  private String findChangeConfirmationLink(List<MailMessage> newMailMessages, String user_email) {
-    MailMessage mailMessage = newMailMessages.stream().filter((m) -> m.to.equals(user_email)).collect(Collectors.toList()).get(1);
+  private String findChangeConfirmationLink(List<MailMessage> MailMessages, String user_email) {
+    MailMessage mailMessage = MailMessages.stream().filter((m) -> m.to.equals(user_email)).collect(Collectors.toList()).get(1);
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }
