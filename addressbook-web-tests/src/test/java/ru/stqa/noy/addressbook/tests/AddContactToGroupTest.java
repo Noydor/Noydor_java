@@ -16,10 +16,14 @@ public class AddContactToGroupTest extends TestBase {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
+    if (app.db().contacts().size() == 0) {
+      app.goTo().homePage();
+      app.contact().create(new AddNewData().withFirstname("Samuel").withLastname("Smith").withNickname("Smithy").withTitle("Mr").withCompany("Seastar").withAddress("Berlin, Niederkirchnerstrasse, 18").withHome("4955123456").withMobile("4976543210").withEmail("samuelsmith@gmail.com").withHomepage("samuelsmith.com"), true);
+    }
   }
 
   @Test
-  public void testContactCreation() {
+  public void testAddContactToGroup() {
     Groups groups = app.db().groups();
     File photo = new File("src/test/resources/noydor.jpg");
     AddNewData newContact = new AddNewData().withFirstname("Samuel").withLastname("Smith").withPhoto(photo).inGroup(groups.iterator().next());

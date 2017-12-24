@@ -3,7 +3,7 @@ package ru.stqa.noy.mantis.appmanager;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.subethamail.wiser.Wiser;
 import org.subethamail.wiser.WiserMessage;
-import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.noy.mantis.model.MailMessage;
 
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
@@ -48,7 +48,6 @@ public class MailHelper {
   }
 
   public void start() {
-    wiser.setPort(10025);
     wiser.start();
   }
 
