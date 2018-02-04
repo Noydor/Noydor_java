@@ -9,31 +9,11 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
+@XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
 
-@XStreamAlias("contact")
 public class AddNewData {
-  @Override
-  public String toString() {
-    return "AddNewData{" +
-            "id=" + id +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            ", nickname='" + nickname + '\'' +
-            ", title='" + title + '\'' +
-            ", company='" + company + '\'' +
-            ", address='" + address + '\'' +
-            ", home='" + home + '\'' +
-            ", mobile='" + mobile + '\'' +
-            ", work='" + work + '\'' +
-            ", email='" + email + '\'' +
-          //  ", email2='" + email2 + '\'' +
-            ", homepage='" + homepage + '\'' +
-          //  ", group='" + group + '\'' +
-          //  ", photo='" + photo + '\'' +
-            '}';
-  }
 
   @XStreamOmitField
   @Id
@@ -96,9 +76,9 @@ public class AddNewData {
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "address_in_groups",
           joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
-  private static Set<GroupData> groups = new HashSet<GroupData>();
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
-  public static Groups getGroups() {
+  public Groups getGroups() {
     return new Groups(groups);
   }
 
@@ -246,6 +226,27 @@ public class AddNewData {
 
   public String getHomepage() {
     return homepage;
+  }
+
+  @Override
+  public String toString() {
+    return "AddNewData{" +
+            "id=" + id +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            ", nickname='" + nickname + '\'' +
+            ", title='" + title + '\'' +
+            ", company='" + company + '\'' +
+            ", address='" + address + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", email='" + email + '\'' +
+            //  ", email2='" + email2 + '\'' +
+            ", homepage='" + homepage + '\'' +
+            //  ", group='" + group + '\'' +
+            //  ", photo='" + photo + '\'' +
+            '}';
   }
 
   @Override

@@ -24,9 +24,10 @@ public class AddContactToGroupTest extends TestBase {
 
   @Test
   public void testAddContactToGroup() {
-    Groups groups = app.db().groups();
-    File photo = new File("src/test/resources/noydor.jpg");
-    AddNewData newContact = new AddNewData().withFirstname("Samuel").withLastname("Smith").withPhoto(photo).inGroup(groups.iterator().next());
+    AddNewData newContact = app.db().contacts().iterator().next();
+    Groups before = newContact.getGroups();
+    GroupData selectedGroup;
+
     app.goTo().gotoAddNewPage();
     app.contact().submitAddNew();
     app.contact().fillAddNewForm(newContact, true);

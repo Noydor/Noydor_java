@@ -33,29 +33,28 @@ public class HbConnectionTest {
     }
   }
 
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void testHbConnectionGroups() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List <GroupData> result = session.createQuery( "from GroupData").list();
-    for (GroupData contact : result) {
-      System.out.println(contact);
+    for (GroupData group : result) {
+      System.out.println(group);
     }
     session.getTransaction().commit();
     session.close();
   }
 
-  @Test
+  @Test(enabled = true)
   public void testHbConnectionContacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List <AddNewData> result = session.createQuery( "from AddNewData where deprecated = '0000-00-00'").list();
-    session.getTransaction().commit();
-    session.close();
-
     for (AddNewData contact : result) {
       System.out.println(contact);
       System.out.println(contact.getGroups());
     }
+    session.getTransaction().commit();
+    session.close();
   }
 }
