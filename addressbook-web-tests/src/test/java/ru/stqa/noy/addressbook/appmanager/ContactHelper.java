@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.noy.addressbook.model.AddNewData;
 import ru.stqa.noy.addressbook.model.Contacts;
+import ru.stqa.noy.addressbook.model.GroupData;
 import ru.stqa.noy.addressbook.model.Groups;
 
 import java.util.HashSet;
@@ -107,6 +108,26 @@ public class ContactHelper extends HelperBase {
 
   public void returnToHomePage() {
     click(By.linkText("home"));
+  }
+
+  public void addContactToGroup(AddNewData contact, GroupData group) {
+    selectContactById(contact.getId());
+    addToGroupById(group.getId());
+    click(By.name("add"));
+  }
+
+  public void deleteContactFromGroup(AddNewData contact, GroupData group) {
+    selectGroupById(group.getId());
+    selectContactById(contact.getId());
+    click(By.name("remove"));
+  }
+
+  public void selectGroupById(int id) {
+    new Select(wd.findElement(By.name("group"))).selectByValue("" + id);
+  }
+
+  public void addToGroupById(int id) {
+    new Select(wd.findElement(By.name("to_group"))).selectByValue("" + id);
   }
 
   private Contacts contactCache = null;

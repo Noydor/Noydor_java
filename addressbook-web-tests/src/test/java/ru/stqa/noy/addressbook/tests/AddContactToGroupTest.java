@@ -8,6 +8,9 @@ import ru.stqa.noy.addressbook.model.Groups;
 
 import java.io.File;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsEqual.equalTo;
+
 public class AddContactToGroupTest extends TestBase {
 
   @BeforeMethod
@@ -26,13 +29,24 @@ public class AddContactToGroupTest extends TestBase {
   public void testAddContactToGroup() {
     AddNewData newContact = app.db().contacts().iterator().next();
     Groups before = newContact.getGroups();
-    GroupData selectedGroup;
+    GroupData inGroup;
+    Groups absentGroups = app.db().groups();
+    absentGroups.removeAll(before);
 
-    app.goTo().gotoAddNewPage();
-    app.contact().submitAddNew();
-    app.contact().fillAddNewForm(newContact, true);
-    app.contact().submitAddNew();
-    app.contact().returnToHomePage();
+    if (absentGroups.isEmpty()) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
+      Groups absentGroups2 = app.db().groups();
+      absentGroups2.removeAll(before);
+      inGroup = absentGroups2.iterator().next();
+    }
+    else {
+      inGroup = absentGroups.iterator().next();
+    }
 
+    app.goTo().homePage();
+    app.contact().addContactToGroup(newContact, inGroup);
+    Groups after = app.db().contactsId(newContact.getId()).iterator().next().getGroups();
+    assertThat(after, equalTo(before.withNewContact(newContact, inGroup)));
   }
 }
