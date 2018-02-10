@@ -14,9 +14,9 @@ public class GeoIpServiceTests {
     assertEquals(geoIP.getCountryCode(), "RUS");
   }
 
-  @Test
+  /* @Test
   public void testInvalidIp() {
     GeoIP geoIP = new GeoIPService().getGeoIPServiceSoap12().getGeoIP("77.247.169.xxx");
     assertEquals(geoIP.getCountryCode(), "RUS");
-  }
+  } */
 }
