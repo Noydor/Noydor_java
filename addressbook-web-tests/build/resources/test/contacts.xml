@@ -1,17 +1,15 @@
 <list>
   <contact>
-    <firstname>firstname 0</firstname>
-    <lastname>lastname 0</lastname>
-    <address>address 0</address>
-  </contact>
-  <contact>
-    <firstname>firstname 1</firstname>
-    <lastname>lastname 1</lastname>
-    <address>address 1</address>
-  </contact>
-  <contact>
-    <firstname>firstname 2</firstname>
-    <lastname>lastname 2</lastname>
-    <address>address 2</address>
+    <firstname>Samuel 0</firstname>
+    <lastname>Smith 0</lastname>
+    <nickname>Smithy 0</nickname>
+    <title>Mr 0</title>
+    <company>Seastar 0</company>
+    <address>Berlin, Niederkirchnerstrasse, 18 0</address>
+    <home>4955123456 0</home>
+    <mobile>4976543210 0</mobile>
+    <work>123456 0</work>
+    <email>samuelsmith@gmail.com 0</email>
+    <homepage>samuelsmith.com 0</homepage>
   </contact>
 </list>

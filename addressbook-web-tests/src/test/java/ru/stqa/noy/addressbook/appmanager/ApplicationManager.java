@@ -1,9 +1,6 @@
 package ru.stqa.noy.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -94,5 +91,9 @@ public class ApplicationManager {
 
   public void closeAlert() {
     wd.switchTo().alert().accept();
+  }
+
+  public byte[] takeScreenshot() {
+    return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
   }
 }

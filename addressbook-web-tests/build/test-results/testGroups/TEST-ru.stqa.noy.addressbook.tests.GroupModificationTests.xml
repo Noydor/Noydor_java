@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.noy.addressbook.tests.GroupModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-12-10T21:02:31" hostname="Dibunizer" time="2.083">
+<testsuite name="ru.stqa.noy.addressbook.tests.GroupModificationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-03-04T17:52:05" hostname="Dibunizer" time="3.998">
   <properties/>
-  <testcase name="testGroupModification" classname="ru.stqa.noy.addressbook.tests.GroupModificationTests" time="2.083"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testGroupModification" classname="ru.stqa.noy.addressbook.tests.GroupModificationTests" time="3.998"/>
+  <system-out><![CDATA[Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

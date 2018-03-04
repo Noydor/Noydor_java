@@ -1,0 +1,49 @@
+{
+  "time" : {
+    "start" : 1520183203928,
+    "stop" : 1520185929895,
+    "duration" : 2725967
+  },
+  "testSuites" : [ {
+    "uid" : "9ff8a9fa54913324",
+    "name" : "Suite1",
+    "title" : "Suite 1",
+    "time" : {
+      "start" : 1520183203928,
+      "stop" : 1520185929895,
+      "duration" : 2725967
+    },
+    "statistic" : {
+      "total" : 2,
+      "passed" : 2,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 0
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "299d6f2c37ecf1fc",
+      "name" : "testGroupModification",
+      "title" : "Test group modification",
+      "time" : {
+        "start" : 1520185925944,
+        "stop" : 1520185929895,
+        "duration" : 3951
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "6db89e2fd64217ee",
+      "name" : "testGroupModification",
+      "title" : "Test group modification",
+      "time" : {
+        "start" : 1520183203928,
+        "stop" : 1520183205805,
+        "duration" : 1877
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  } ]
+}
